@@ -3,69 +3,127 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TrendFlash 趨勢災情閃報 - 24H全球科技與遊戲災情同步</title>
+    <title>TrendFlash 趨勢災情閃報 - 全球科技與遊戲災情同步</title>
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #0f172a; color: #f8fafc; margin: 0; padding: 20px; }
-        .container { max-width: 800px; margin: 0 auto; }
-        header { text-align: center; padding: 20px 0; border-bottom: 2px solid #334155; }
-        h1 { color: #f43f5e; margin: 0; font-size: 2rem; }
-        p.subtitle { color: #94a3b8; font-size: 0.9rem; }
-        .ad-space { text-align: center; padding: 5px; margin: 10px 0; color: #334155; font-size: 0.7rem; letter-spacing: 1px; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #0f172a; color: #f8fafc; margin: 0; padding: 0; }
+        
+        /* 導覽列 */
+        .navbar { background: #1e293b; padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #334155; }
+        .logo { font-size: 1.5rem; font-weight: bold; color: #f43f5e; text-decoration: none; }
+        .nav-links a { color: #cbd5e1; text-decoration: none; margin-left: 20px; font-size: 0.9rem; }
+        .nav-links a:hover { color: #f43f5e; }
+
+        /* 主區塊雙欄排版 */
+        .main-layout { max-width: 1200px; margin: 30px auto; padding: 0 20px; display: grid; grid-template-columns: 2fr 1fr; gap: 30px; }
+        
+        /* 左側：主新聞流 */
+        .content-area { }
+        .section-title { font-size: 1.2rem; color: #94a3b8; margin-bottom: 20px; border-left: 4px solid #f43f5e; padding-left: 10px; }
+
         .card { background-color: #1e293b; border-radius: 12px; padding: 20px; margin-bottom: 20px; border-left: 5px solid #f43f5e; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); }
-        .card-tag { background-color: #881337; color: #f43f5e; font-size: 0.75rem; padding: 4px 8px; border-radius: 4px; font-weight: bold; display: inline-block; }
+        .card.game { border-left-color: #3b82f6; }
+        .card-tag { display: inline-block; background-color: #881337; color: #f43f5e; font-size: 0.75rem; padding: 4px 8px; border-radius: 4px; font-weight: bold; }
+        .card.game .card-tag { background-color: #1e3a8a; color: #3b82f6; }
         .card-title { font-size: 1.3rem; margin: 10px 0; color: #fff; }
         .card-time { font-size: 0.8rem; color: #64748b; }
         .info-section { background: #0f172a; padding: 12px; border-radius: 6px; margin: 10px 0; border: 1px solid #334155; }
         .info-title { font-weight: bold; color: #fbbf24; font-size: 0.95rem; }
         .info-content { font-size: 0.9rem; color: #cbd5e1; margin-top: 5px; line-height: 1.5; }
+
+        /* 右側：側邊欄 */
+        .sidebar { }
+        .widget { background: #1e293b; border-radius: 12px; padding: 20px; margin-bottom: 20px; border: 1px solid #334155; }
+        .widget-title { font-size: 1.1rem; color: #fff; margin-top: 0; margin-bottom: 15px; padding-bottom: 10px; border-bottom: 1px solid #334155; }
+        .rank-item { display: flex; align-items: center; margin-bottom: 15px; font-size: 0.9rem; }
+        .rank-num { font-size: 1.2rem; font-weight: bold; color: #f43f5e; margin-right: 15px; width: 20px; }
+        .rank-text { color: #cbd5e1; text-decoration: none; }
+        .rank-text:hover { color: #fff; }
+
+        .ad-space { text-align: center; padding: 5px; margin: 10px 0; color: #334155; font-size: 0.7rem; letter-spacing: 1px; }
     </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>🚨 TrendFlash 趨勢災情閃報</h1>
-            <p class="subtitle">監控全球軟體、遊戲、大牌 APP 剛發生的突發災情與臨時解決方案</p>
-        </header>
 
-        <div class="ad-space">▼ Google AdSense 廣告投放區 ▼</div>
-
-       <div class="card">
-            <div class="card-tag">🚨 突發重大災情</div>
-            <div class="card-title">Gemini AI 爆發全球性伺服器崩潰！集體彈出系統錯誤代碼</div>
-            <div class="card-time">最後更新：剛剛（即時追蹤）</div>
-            
-            <div class="info-section">
-                <div class="info-title">❌ 全網集體災情回報：</div>
-                <div class="info-content">全球大量用戶在網頁版與手機版 App 輸入指令時，AI 突然完全拒絕回應，並集體彈出「系統發生未預期錯誤」的紅色警告視窗，網民崩潰大喊「AI 弟弟今天心情不美麗」。</div>
-            </div>
-
-            <div class="info-section">
-                <div class="info-title">💡 臨時繞過解決方案：</div>
-                <div class="info-content">經論壇工程師實測，這屬於官方後台伺服器的排隊機制炸裂。在官方修復前，可以嘗試**清除瀏覽器快取（Cookie）**並**切換至無痕模式（Incognito）**重新登入，或切換至手機行動網路（4G/5G）通常有機會繞過阻斷。</div>
-            </div>
+    <!-- 導覽列 -->
+    <nav class="navbar">
+        <a href="#" class="logo">🚨 TrendFlash 趨勢災情閃報</a>
+        <div class="nav-links">
+            <a href="#">首頁爆料</a>
+            <a href="#">科技災情</a>
+            <a href="#">遊戲故障</a>
+            <a href="#">關於我們</a>
         </div>
-<div class="card">
-            <div class="card-tag">🎮 遊戲改機特報</div>
-            <div class="card-title">3DS 改機界爆發 hShop 安裝 Rutile Ruby 嚴重錯誤代碼！</div>
-            <div class="card-time">最後更新：10 分鐘前</div>
+    </nav>
+
+    <!-- 主排版結構 -->
+    <div class="main-layout">
+        
+        <!-- 左邊：主要內容 -->
+        <main class="content-area">
+            <div class="section-title">🔴 即時突發回報流</div>
             
-            <div class="info-section">
-                <div class="info-title">❌ 全網集體災情回報：</div>
-                <div class="info-content">大量任天堂 3DS 改機玩家反應，在透過知名平台 hShop 下載並安裝熱門改版遊戲《Rutile Ruby（寶可夢 璀璨紅寶石）》時，進度條跑到一半就會突然中斷，並集體彈出發生未知錯誤的報錯視窗，導致玩家無法順利入庫。</div>
+            <!-- 卡片一 -->
+            <div class="card">
+                <div class="card-tag">🚨 突發重大災情</div>
+                <div class="card-title">Gemini AI 爆發全球性伺服器崩潰！集體彈出系統錯誤代碼</div>
+                <div class="card-time">最後更新：剛剛（即時追蹤）</div>
+                <div class="info-section">
+                    <div class="info-title">❌ 全網集體災情回報：</div>
+                    <div class="info-content">全球大量用戶在網頁版與手機版 App 輸入指令時，AI 突然完全拒絕回應，並集體彈出「系統發生未預期錯誤」的紅色警告視窗。</div>
+                </div>
+                <div class="info-section">
+                    <div class="info-title">💡 臨時繞過解決方案：</div>
+                    <div class="info-content">嘗試清除瀏覽器快取（Cookie）並切換至無痕模式重新登入，或切換至手機行動網路（4G/5G）繞過阻斷。</div>
+                </div>
             </div>
 
-            <div class="info-section">
-                <div class="info-title">💡 臨時繞過解決方案：</div>
-                <div class="info-content">根據國外 Reddit 改機達人實測，此錯誤通常是因為 hShop 伺服器端該檔案的特定分流節點損壞，或是記憶卡空間不足、寫入速度過慢導致。臨時解決辦法是：**先檢查並確保 3DS SD卡預留 2GB 以上空間**，若空間足夠仍報錯，建議**改用電腦直接下載 3DS 格式檔案，再透過 FBI 用區網（Remote Install）手動安裝**即可完美繞過！</div>
+            <!-- 卡片二 -->
+            <div class="card game">
+                <div class="card-tag">🎮 遊戲改機特報</div>
+                <div class="card-title">3DS 改機界爆發 hShop 安裝 Rutile Ruby 嚴重錯誤代碼！</div>
+                <div class="card-time">最後更新：15 分鐘前</div>
+                <div class="info-section">
+                    <div class="info-title">❌ 全網集體災情回報：</div>
+                    <div class="info-content">大量任天堂 3DS 改機玩家反應，在透過 hShop 下載並安裝《Rutile Ruby》時，進度條會突然中斷並彈出未知錯誤。</div>
+                </div>
+                <div class="info-section">
+                    <div class="info-title">💡 臨時繞過解決方案：</div>
+                    <div class="info-content">確保 SD 卡預留 2GB 以上空間，或改用電腦下載 3DS 格式檔案，再透過 FBI 用區網（Remote Install）手動安裝。</div>
+                </div>
             </div>
-        </div>
-        <!-- 這裡放第二個 Google 廣告 -->
-        <div class="ad-space">▼ Google AdSense 自動推薦廣告區 ▼</div>
-    </div>
-</body>
-</html>
+        </main>
 
-        <div class="ad-space">▼ Google AdSense 自動推薦廣告區 ▼</div>
+        <!-- 右邊：側邊欄 -->
+        <aside class="sidebar">
+            <div class="widget">
+                <h3 class="widget-title">🔥 24H 熱門災情排行</h3>
+                <div class="rank-item">
+                    <span class="rank-num">1</span>
+                    <a href="#" class="rank-text">Gemini AI 全球伺服器連線中斷錯誤</a>
+                </div>
+                <div class="rank-item">
+                    <span class="rank-num">2</span>
+                    <a href="#" class="rank-text">iOS 更新後特定通訊軟體閃退災情</a>
+                </div>
+                <div class="rank-item">
+                    <span class="rank-num">3</span>
+                    <a href="#" class="rank-text">3DS hShop 下載寶可夢改版報錯</a>
+                </div>
+                <div class="rank-item">
+                    <span class="rank-num">4</span>
+                    <a href="#" class="rank-text">Windows 11 累積更新引發遊戲效能驟降</a>
+                </div>
+            </div>
+
+            <div class="widget">
+                <h3 class="widget-title">📢 獵人廣播</h3>
+                <p style="font-size: 0.85rem; color: #94a3b8; line-height: 1.6;">本站由全網流量獵人即時監控，24小時不間斷同步全球 Reddit、PTT 最新軟體崩潰與突發故障。</p>
+            </div>
+            
+            <div class="ad-space">▼ Google AdSense 廣告區 ▼</div>
+        </aside>
+
     </div>
+
 </body>
 </html>
