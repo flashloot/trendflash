@@ -1,20 +1,20 @@
 import os
-import google.generativeai as genai
-import sys
+from google import genai
 
-# 檢查環境變數有沒有讀到
-key = os.environ.get("GEMINI_API_KEY")
-if not key:
-    print("錯誤：找不到 GEMINI_API_KEY")
-    sys.exit(1)
+# 使用新版 SDK 初始化
+client = genai.Client(api_key=os.environ["GEMINI_API_KEY"])
 
-# 測試連線
-try:
-    genai.configure(api_key=key)
-    model = genai.GenerativeModel('gemini-1.5-flash')
-    print("連線成功，模型載入中...")
-    response = model.generate_content("Hello")
-    print("AI 回應成功：" + response.text)
-except Exception as e:
-    print(f"發生錯誤: {e}")
-    sys.exit(1)
+# 災情內容
+reddit_news = "Steam Deck OLED 版最近在更新後出現 Wi-Fi 斷連災情"
+
+# 使用 gemini-2.0-flash 或 gemini-1.5-flash
+response = client.models.generate_content(
+    model="gemini-1.5-flash",
+    contents=f"請將這條災情寫成一段適合網站的 HTML 卡片代碼。新聞內容：{reddit_news}"
+)
+
+# 寫入檔案
+with open("index.html", "a", encoding="utf-8") as f:
+    f.write(f"\n\n{response.text}\n")
+
+print("更新完成！")
