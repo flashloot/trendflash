@@ -12,8 +12,8 @@ jobs:
         with:
           python-version: '3.9'
       - name: Install dependencies
-        # 強制更新套件，確保版本夠新
         run: pip install -U google-generativeai
+      
       - name: Run Auto Script
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
