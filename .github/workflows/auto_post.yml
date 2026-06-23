@@ -1,8 +1,6 @@
 name: Auto Post News
 on:
-  schedule:
-    - cron: '0 * * * *' # 每小時自動執行一次
-  workflow_dispatch: # 也可以讓你手動按一下就立刻執行
+  workflow_dispatch:
 
 jobs:
   build:
@@ -14,7 +12,7 @@ jobs:
         with:
           python-version: '3.9'
       - name: Install dependencies
-        run: pip install google-generativeai
+        run: pip install -U google-generativeai
       - name: Run Auto Script
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
