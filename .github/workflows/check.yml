@@ -1,13 +1,13 @@
 name: Auto Post News
 on:
   schedule:
-    - cron: '0 * * * *' # 這代表每小時執行一次，如果你需要調整頻率請告訴我
+    - cron: '0 * * * *'
   workflow_dispatch:
 jobs:
   run-test:
     runs-on: ubuntu-latest
     permissions:
-      contents: write # 必須要這行，Action 才有權限寫入檔案
+      contents: write
     steps:
       - uses: actions/checkout@v2
       - name: Run Auto Post
@@ -21,8 +21,9 @@ jobs:
           data = {'contents': [{'parts': [{'text': '請寫一段 <div>測試</div> 的 HTML 代碼'}]}]};
           req = urllib.request.Request(url, data=json.dumps(data).encode('utf-8'), headers={'Content-Type': 'application/json'});
           with urllib.request.urlopen(req) as res: 
-              content = json.loads(res.read().decode('utf-8'))['candidates'][0]['content']['parts'][0]['text']
-              with open('index.html', 'a', encoding='utf-8') as f: f.write('\n' + content + '\n')
+              response = json.loads(res.read().decode('utf-8'));
+              content = response['candidates'][0]['content']['parts'][0]['text'];
+              with open('index.html', 'a', encoding='utf-8') as f: f.write('\n' + content + '\n');
           "
       - name: Commit changes
         run: |
