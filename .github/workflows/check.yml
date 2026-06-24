@@ -1,9 +1,13 @@
 name: Auto Post News
 on:
+  schedule:
+    - cron: '0 * * * *' # 這代表每小時執行一次，如果你需要調整頻率請告訴我
   workflow_dispatch:
 jobs:
   run-test:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write # 必須要這行，Action 才有權限寫入檔案
     steps:
       - uses: actions/checkout@v2
       - name: Run Auto Post
@@ -16,18 +20,14 @@ jobs:
           url = f'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key={api_key}';
           data = {'contents': [{'parts': [{'text': '請寫一段 <div>測試</div> 的 HTML 代碼'}]}]};
           req = urllib.request.Request(url, data=json.dumps(data).encode('utf-8'), headers={'Content-Type': 'application/json'});
-          try:
-              with urllib.request.urlopen(req) as res: 
-                  response = json.loads(res.read().decode('utf-8'));
-                  content = response['candidates'][0]['content']['parts'][0]['text'];
-                  with open('index.html', 'a', encoding='utf-8') as f: f.write('\n' + content + '\n');
-                  print('寫入成功');
-          except Exception as e: print(e)
+          with urllib.request.urlopen(req) as res: 
+              content = json.loads(res.read().decode('utf-8'))['candidates'][0]['content']['parts'][0]['text']
+              with open('index.html', 'a', encoding='utf-8') as f: f.write('\n' + content + '\n')
           "
       - name: Commit changes
         run: |
-          git config --global user.name 'GitHub Action'
-          git config --global user.email 'action@github.com'
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
           git add index.html
-          git commit -m 'Auto update' || echo 'No changes to commit'
+          git commit -m 'Auto update index.html' || echo 'No changes'
           git push
