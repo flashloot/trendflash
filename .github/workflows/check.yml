@@ -17,7 +17,7 @@ jobs:
           python3 -c "
           import urllib.request, json, os;
           api_key = os.environ['GEMINI_API_KEY'];
-          url = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=' + api_key;
+          url = 'https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent?key=' + api_key;
           data = {'contents': [{'parts': [{'text': '請寫一段簡單的 HTML 新聞卡片代碼'}]}]};
           req = urllib.request.Request(url, data=json.dumps(data).encode('utf-8'), headers={'Content-Type': 'application/json'});
           with urllib.request.urlopen(req) as res: 
