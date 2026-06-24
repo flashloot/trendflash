@@ -28,5 +28,6 @@ jobs:
           git config --global user.name 'GitHub Action'
           git config --global user.email 'action@github.com'
           git add index.html
-          git commit -m 'Auto update news'
-          git push
+          # 使用 || true 確保即使沒有變更，系統也會認為這一步成功，而不會報錯中斷
+          git commit -m 'Auto update news' || echo "沒有新變更，跳過提交"
+          git push || echo "沒有需要推送的內容"
