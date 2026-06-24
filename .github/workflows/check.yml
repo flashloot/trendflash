@@ -11,24 +11,19 @@ jobs:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: |
           python3 -c "
-          import urllib.request, json, os, datetime;
+          import urllib.request, json, os;
           key = os.environ['GEMINI_API_KEY'];
           url = f'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key={key}';
-          now = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S');
-          data = {'contents': [{'parts': [{'text': f'請寫一段關於 Steam Deck 的新聞卡片代碼，現在時間是 {now}'}]}]};
+          data = {'contents': [{'parts': [{'text': '請寫一段 <div>測試內容</div> 的 HTML 代碼'}]}]};
           req = urllib.request.Request(url, data=json.dumps(data).encode('utf-8'), headers={'Content-Type': 'application/json'});
-          try:
-              with urllib.request.urlopen(req) as res: 
-                  response_data = json.loads(res.read().decode('utf-8'));
-                  content = response_data['candidates'][0]['content']['parts'][0]['text'];
-                  with open('index.html', 'a', encoding='utf-8') as f: f.write('\n' + content + '\n');
-                  print('寫入成功！');
-          except Exception as e: print('失敗：', e)
+          with urllib.request.urlopen(req) as res: 
+              content = json.loads(res.read().decode('utf-8'))['candidates'][0]['content']['parts'][0]['text']
+              with open('index.html', 'a', encoding='utf-8') as f: f.write('\n' + content + '\n')
           "
       - name: Commit changes
         run: |
           git config --global user.name 'GitHub Action'
           git config --global user.email 'action@github.com'
           git add index.html
-          git commit -m 'Auto update news' || echo '沒有新變更，跳過提交'
-          git push || echo '沒有需要推送的內容'
+          git commit -m 'Update' || echo 'No change'
+          git push
